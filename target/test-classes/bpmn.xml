@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions>
+
+    <process id="third" name="发货业务流程定义">
+
+        <startEvent id="startEvent0" name="开始事件0"/>
+
+        <userTask id="userTask" name="可选的任务名称" assignee="user1"/>
+
+        <userTask id="userTask1" name="可选的任务名称" assignee="root"/>
+        
+        <exclusiveGateway id="exclu0" name="排他网关-只能执行1个"/>
+        <endEvent id="endEvent0" name="结束事件1"/>
+        <sequenceFlow id="flow" name="无条件顺序流0" action="NORMAL"
+                      sourceRef="startEvent0" targetRef="userTask"/>
+        <sequenceFlow id="flow1" name="无条件顺序流1" action="NORMAL"
+                      sourceRef="userTask" targetRef="userTask1"/>
+        <sequenceFlow id="flow2" name="无条件顺序流2" action="NORMAL"
+                      sourceRef="userTask1" targetRef="exclu0"/>
+        <sequenceFlow id="flow3" name="有条件顺序流0" action="NORMAL"
+                      sourceRef="exclu0" targetRef="endEvent0">
+            <conditionExpression type="juel">
+                <![CDATA[${approved == true}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow4" name="有条件顺序流1" action="REVOKE"
+                      sourceRef="exclu0" targetRef="userTask">
+            <conditionExpression type="juel">
+                <![CDATA[${approved == false}]]>
+            </conditionExpression>
+        </sequenceFlow>
+    </process>
+</definitions>
