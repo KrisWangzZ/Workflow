@@ -10,6 +10,6 @@ This is a simple workflow engine.
 
 # Others
 
-You can download the Web Demo in (https://github.com/jiujiangluck/Workflow/releases)[realse].
+You can download the Web Demo in [realse](https://github.com/jiujiangluck/Workflow/releases).
 
 
